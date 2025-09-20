@@ -1,7 +1,10 @@
-subject_id,subject_name,credit,instructor,pre_req_subject_id
-05501001,Basic Mathematics,3,Dr. Somchai,
-05501002,Basic Physics,3,Dr. Wittaya,05501001
-05501003,General Chemistry,3,Dr. Jintana,
-90690001,Thai Language,2,Teacher Somying,
-90690002,English Language,2,Teacher Sunthorn,90690001
-90690003,Physical Education,1,Teacher Arthit,
+SubjectID,Name,Credit,Instructor,PreReq
+05501001,Calculus I,3,Dr. Albert,
+05501002,Physics I,3,Dr. Newton,
+05501003,Computer Science I,3,Dr. Turing,05501001
+05501004,Data Structures,3,Dr. Knuth,05501003
+05501005,Algorithms,3,Dr. Turing,05501004
+90690001,English I,3,Prof. Emily,
+90690002,History I,3,Prof. Clark,
+90690003,Philosophy I,3,Prof. Socrates,
+90690004,Critical Thinking,3,Prof. Plato,

@@ -1,11 +1,7 @@
-student_id,prefix,first_name,last_name,dob,school,email,course_id
-69000001,Mr.,Somchai,Jai Dee,2004-05-12,Thepsirin School,somchai@example.com,10000001
-69000002,Ms.,Sudarat,Sawasdee,2005-03-20,Suan Kulab School,sudarat@example.com,10000001
-69000003,Mr.,Thanapon,Saengthong,2004-08-15,Thepsirin School,thanapon@example.com,10000002
-69000004,Ms.,Pimjai,Wan Jai,2005-01-30,Horwang School,pimjai@example.com,10000002
-69000005,Mr.,Wittaya,Keng Kla,2004-11-22,Bangkok Christian School,wittaya@example.com,10000001
-69000006,Ms.,Jintana,Somboon,2005-07-08,Suan Kulab School,jintana@example.com,10000002
-69000007,Mr.,Apisith,Chareonsuk,2004-12-05,Thepsirin School,apisit@example.com,10000001
-69000008,Ms.,Ornthai,Sawang,2005-09-18,Horwang School,ornthai@example.com,10000002
-69000009,Mr.,Kriangkrai,Chaiyachna,2004-06-10,Bangkok Christian School,kriengkrai@example.com,10000001
-69000010,Ms.,Suchada,Sodsai,2005-04-25,Suan Kulab School,suchada@example.com,10000002
+StudentID,Prefix,FirstName,LastName,BirthDate,School,Email,CourseID
+69000001,Mr.,John,Doe,2002-05-10,Sunshine High,john.doe@email.com,10010001
+69000002,Ms.,Anna,Smith,2003-03-22,Riverside School,anna.smith@email.com,10010001
+69000003,Mrs.,Mary,Johnson,2002-11-12,Hillside Academy,mary.johnson@email.com,10010002
+69000004,Mr.,David,Lee,2003-07-30,Green Valley,david.lee@email.com,10010002
+69000005,Ms.,Sophia,Williams,2003-01-15,Blue Sky School,sophia.williams@email.com,10010001
+69000006,Mr.,Michael,Brown,2002-09-08,Sunrise High,michael.brown@email.com,10010002

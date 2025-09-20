@@ -27,28 +27,48 @@ public class StudentHome extends JFrame {
         regController = new RegisteredSubjectController();
         subjectController = new SubjectController();
 
-        // Panel แสดงรายละเอียดนักเรียน
         JTextArea infoArea = new JTextArea(student.getFullInfo());
-        infoArea.setEditable(false); // อ่านอย่างเดียว
+        infoArea.setEditable(false);
         infoArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        infoArea.setBackground(getBackground());
         add(new JScrollPane(infoArea), BorderLayout.NORTH);
 
-        // Table แสดงรายวิชา + เกรด
         String[] columns = {"Subject ID", "Subject Name", "Credit", "Instructor", "Grade"};
         DefaultTableModel model = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // ป้องกันแก้ไขผ่าน keyboard
+                return false;
             }
         };
+
         JTable table = new JTable(model);
-        table.setDefaultEditor(Object.class, null); // ป้องกัน double-click แก้ไข
+        table.setFillsViewportHeight(true);
 
-        // เติมข้อมูลจาก RegisteredSubject + Subject
-        List<RegisteredSubject> regs = regController.getByStudentId(student.getId().trim());
-        System.out.println("Registered subjects for student " + student.getId() + ": " + regs.size());
+        List<RegisteredSubject> regs = regController.getByStudentId(student.getId());
+    
+        for(RegisteredSubject reg : regs) {
+            Subject sub = subjectController.getSubjectById(reg.getSubjectId());
+            if(sub != null) {
+                model.addRow(new Object[]{
+                        sub.getId(),
+                        sub.getName(),
+                        sub.getCredit(),
+                        sub.getInstructor(),
+                        reg.getGrade()
+                });
+            } else {
+                model.addRow(new Object[]{
+                        reg.getSubjectId(),
+                        "SUBJECT NOT FOUND",
+                        "N/A",
+                        "N/A",
+                        reg.getGrade()
+                });
+            }
+        }
 
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(table);
+        add(scrollPane, BorderLayout.CENTER);
 
         setLocationRelativeTo(null);
         setVisible(true);

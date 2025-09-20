@@ -1,7 +1,9 @@
-course_id,course_name,department,required_subject_id,term
-10000001,Science,Faculty of Science,05501001,1
-10000001,Science,Faculty of Science,05501002,2
-10000001,Science,Faculty of Science,90690001,1
-10000002,Engineering,Faculty of Engineering,05501002,1
-10000002,Engineering,Faculty of Engineering,05501003,2
-10000002,Engineering,Faculty of Engineering,90690002,1
+CourseID,CourseName,Department,CompulsorySubjectID,Term
+10010001,Computer Engineering,Engineering,05501001,1
+10010001,Computer Engineering,Engineering,05501002,1
+10010001,Computer Engineering,Engineering,90690001,1
+10010001,Computer Engineering,Engineering,90690004,1
+10010002,Information Systems,IT,05501003,1
+10010002,Information Systems,IT,90690002,1
+10010002,Information Systems,IT,90690003,1
+10010002,Information Systems,IT,90690001,1
