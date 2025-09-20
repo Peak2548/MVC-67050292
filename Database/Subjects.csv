@@ -1,10 +1,13 @@
 SubjectID,Name,Credit,Instructor,PreReq
 05501001,Calculus I,3,Dr. Albert,
-05501002,Physics I,3,Dr. Newton,
+05501002,Physics I,3,Dr. Newton,05501001
 05501003,Computer Science I,3,Dr. Turing,05501001
 05501004,Data Structures,3,Dr. Knuth,05501003
 05501005,Algorithms,3,Dr. Turing,05501004
+05501006,Database Systems,3,Dr. Codd,05501003
 90690001,English I,3,Prof. Emily,
 90690002,History I,3,Prof. Clark,
-90690003,Philosophy I,3,Prof. Socrates,
-90690004,Critical Thinking,3,Prof. Plato,
+90690003,Philosophy I,3,Prof. Socrates,90690001
+90690004,Critical Thinking,3,Prof. Plato,90690001
+90690005,Literature I,3,Prof. Shakespeare,90690001
+90690006,Advanced English,3,Prof. Emily,90690004

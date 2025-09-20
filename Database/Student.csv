@@ -1,7 +1,13 @@
 StudentID,Prefix,FirstName,LastName,BirthDate,School,Email,CourseID
-69000001,Mr.,John,Doe,2002-05-10,Sunshine High,john.doe@email.com,10010001
-69000002,Ms.,Anna,Smith,2003-03-22,Riverside School,anna.smith@email.com,10010001
-69000003,Mrs.,Mary,Johnson,2002-11-12,Hillside Academy,mary.johnson@email.com,10010002
-69000004,Mr.,David,Lee,2003-07-30,Green Valley,david.lee@email.com,10010002
-69000005,Ms.,Sophia,Williams,2003-01-15,Blue Sky School,sophia.williams@email.com,10010001
-69000006,Mr.,Michael,Brown,2002-09-08,Sunrise High,michael.brown@email.com,10010002
+69000001,Mr.,Somchai,Jaidee,2002-05-10,Faculty of Engineering,somchai.j@email.com,10010001
+69000002,Ms.,Siriporn,Suksom,2003-03-22,Faculty of Engineering,siriporn.s@email.com,10010001
+69000003,Mr.,Niran,Wongsak,2002-11-12,Faculty of Science,niran.w@email.com,10010002
+69000004,Ms.,Ploy,Thanakit,2003-07-30,Faculty of Science,ploy.t@email.com,10010002
+69000005,Mr.,Krit,Sombat,2003-01-15,Faculty of Engineering,krit.s@email.com,10010001
+69000006,Ms.,Mint,Kaewjai,2002-09-08,Faculty of Science,mint.k@email.com,10010002
+69000007,Mr.,Bank,Ruangsri,2002-12-25,Faculty of Business,bank.r@email.com,10010003
+69000008,Ms.,Fon,Prasert,2003-04-18,Faculty of Business,fon.p@email.com,10010003
+69000009,Mr.,Top,Jiraporn,2002-08-05,Faculty of Arts,top.j@email.com,10010004
+69000010,Ms.,Nim,Chaiyaporn,2003-06-12,Faculty of Arts,nim.c@email.com,10010004
+69000011,Mr.,Pan,Suttipong,2002-10-30,Faculty of Engineering,pan.s@email.com,10010001
+69000012,Ms.,Ice,Wongwian,2003-02-14,Faculty of Business,ice.w@email.com,10010003
