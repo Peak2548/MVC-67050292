@@ -1,0 +1,7 @@
+course_id,course_name,department,required_subject_id,term
+10000001,Science,Faculty of Science,05501001,1
+10000001,Science,Faculty of Science,05501002,2
+10000001,Science,Faculty of Science,90690001,1
+10000002,Engineering,Faculty of Engineering,05501002,1
+10000002,Engineering,Faculty of Engineering,05501003,2
+10000002,Engineering,Faculty of Engineering,90690002,1

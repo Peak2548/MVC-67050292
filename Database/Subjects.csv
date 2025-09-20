@@ -1,0 +1,7 @@
+subject_id,subject_name,credit,instructor,pre_req_subject_id
+05501001,Basic Mathematics,3,Dr. Somchai,
+05501002,Basic Physics,3,Dr. Wittaya,05501001
+05501003,General Chemistry,3,Dr. Jintana,
+90690001,Thai Language,2,Teacher Somying,
+90690002,English Language,2,Teacher Sunthorn,90690001
+90690003,Physical Education,1,Teacher Arthit,
