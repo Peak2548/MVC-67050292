@@ -62,7 +62,6 @@ public class SubjectController {
                 .orElse(null);
     }
     
-    // เพิ่ม method เพื่อ debug
     public List<Subject> getAllSubjects() {
         return new ArrayList<>(subjects);
     }

@@ -14,4 +14,8 @@ public class RegisteredSubject {
     public String getStudentId() { return studentId; }
     public String getSubjectId() { return subjectId; }
     public String getGrade() { return grade; }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 }

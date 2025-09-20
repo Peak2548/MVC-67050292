@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import Model.Student;
+import Model.Subject;
 import Controller.StudentController;
+import Controller.SubjectController;
 
 public class AdminHome extends JFrame {
 
@@ -19,6 +21,7 @@ public class AdminHome extends JFrame {
     private JComboBox<String> sortCombo;
     private List<Student> students;
     private StudentController studentController;
+    private SubjectController subjectController;
 
     public AdminHome() {
         setTitle("Admin - Student List");
@@ -27,9 +30,9 @@ public class AdminHome extends JFrame {
         setLayout(new BorderLayout(10, 10));
 
         studentController = new StudentController();
+        subjectController = new SubjectController();
         students = studentController.getAllStudents();
 
-        // Top Panel (ค้นหา / กรอง / เรียงลำดับ)
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -52,35 +55,32 @@ public class AdminHome extends JFrame {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Table
         String[] columnNames = {"ID", "Prefix", "First Name", "Last Name", "DOB", "School", "Course"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // ปิดแก้ไขทุก cell
+                return false;
             }
         };
         table = new JTable(model);
+        table.getTableHeader().setReorderingAllowed(false);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
         populateTable(students);
 
-        // TableRowSorter
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
         table.setRowSorter(sorter);
 
-        // Search Button
         searchBtn.addActionListener(e -> {
             String text = searchField.getText().trim();
             if (text.isEmpty()) {
                 sorter.setRowFilter(null);
             } else {
-                sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, 2, 3)); // first/last name
+                sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, 2, 3));
             }
         });
 
-        // Filter School
         schoolFilter.addActionListener(e -> {
             String selected = (String) schoolFilter.getSelectedItem();
             if (selected.equals("All Schools")) {
@@ -90,7 +90,6 @@ public class AdminHome extends JFrame {
             }
         });
 
-        // Sort Combo
         sortCombo.addActionListener(e -> {
             String selected = (String) sortCombo.getSelectedItem();
             if (selected.equals("Name")) {
@@ -100,22 +99,33 @@ public class AdminHome extends JFrame {
             }
         });
 
-        // Button Panel
-        JButton viewDetailBtn = new JButton("View Detail");
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(viewDetailBtn);
-        add(buttonPanel, BorderLayout.SOUTH);
 
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        
+        JButton viewDetailBtn = new JButton("View Detail");
         viewDetailBtn.addActionListener(e -> {
             int row = table.getSelectedRow();
             if (row >= 0) {
                 int modelRow = table.convertRowIndexToModel(row);
                 Student s = students.get(modelRow);
-                new StudentHome(s);
+                new StudentHome(s, true);
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a student first!");
             }
         });
+        
+        JButton gradingBtn = new JButton("Grading");
+        gradingBtn.setFont(new Font("Arial", Font.BOLD, 12));
+        gradingBtn.addActionListener(e -> openGradingDialog());
+        
+        JButton subjectListBtn = new JButton("Subject List");
+        subjectListBtn.addActionListener(e -> showSubjectList());
+        
+        buttonPanel.add(viewDetailBtn);
+        buttonPanel.add(gradingBtn);
+        buttonPanel.add(subjectListBtn);
+        
+        add(buttonPanel, BorderLayout.SOUTH);
 
         setLocationRelativeTo(null);
         setVisible(true);
@@ -135,5 +145,67 @@ public class AdminHome extends JFrame {
                     s.getCourseId()
             });
         }
+    }
+    
+    private void openGradingDialog() {
+        List<Subject> subjects = subjectController.getAllSubjects();
+        
+        if (subjects.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No subjects found!");
+            return;
+        }
+        
+        String[] subjectArray = subjects.stream()
+                .map(s -> s.getId() + " - " + s.getName())
+                .toArray(String[]::new);
+        
+        String selectedSubject = (String) JOptionPane.showInputDialog(
+                this,
+                "Select a subject for grading:",
+                "Select Subject",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                subjectArray,
+                subjectArray[0]
+        );
+        
+        if (selectedSubject != null) {
+            String subjectId = selectedSubject.split(" - ")[0];
+            
+            new Grading(subjectId);
+        }
+    }
+    
+    private void showSubjectList() {
+        List<Subject> subjects = subjectController.getAllSubjects();
+        
+        String[] columnNames = {"Subject ID", "Subject Name", "Credits", "Instructor"};
+        DefaultTableModel subjectModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) { return false; }
+        };
+        
+        for (Subject s : subjects) {
+            subjectModel.addRow(new Object[]{
+                s.getId(), s.getName(), s.getCredit(), s.getInstructor()
+            });
+        }
+        
+        JTable subjectTable = new JTable(subjectModel);
+        subjectTable.getTableHeader().setReorderingAllowed(false);
+        
+        JDialog dialog = new JDialog(this, "Subject List", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.add(new JScrollPane(subjectTable), BorderLayout.CENTER);
+        
+        JPanel dialogButtonPanel = new JPanel();
+        JButton closeBtn = new JButton("Close");
+        closeBtn.addActionListener(e -> dialog.dispose());
+        dialogButtonPanel.add(closeBtn);
+        
+        dialog.add(dialogButtonPanel, BorderLayout.SOUTH);
+        dialog.setSize(600, 400);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
     }
 }

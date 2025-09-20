@@ -63,8 +63,8 @@ public class StudentController {
             }
         }
         return result;
-
     }
+    
     public List<Student> filterBySchool(String school) {
         List<Student> result = new ArrayList<>();
         for (Student s : students) {

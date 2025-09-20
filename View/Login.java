@@ -49,27 +49,33 @@ public class Login extends JFrame {
             String password = new String(passTextField.getPassword()).trim();
 
             if (username.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please enter username or password!");
+                JOptionPane.showMessageDialog(this, "Please enter username and password!");
                 return;
             }
-            if (auth.isAdmin(username)) {
-                JOptionPane.showMessageDialog(this, "Welcome Admin!");
-                this.dispose();
-                new AdminHome();
-            } else {
-                Student student = studentController.getAllStudents().stream()
-                        .filter(s -> s.getId().equals(username))
-                        .findFirst()
-                        .orElse(null);
+            
+            try {
+                if (auth.isAdmin(username)) {
+                    JOptionPane.showMessageDialog(this, "Welcome Admin!");
+                    this.dispose();
+                    new AdminHome();
+                } else {
+                    Student student = studentController.getAllStudents().stream()
+                            .filter(s -> s.getId().equals(username))
+                            .findFirst()
+                            .orElse(null);
 
-                if(student == null) {
-                    JOptionPane.showMessageDialog(this, "Username is not Correct");
-                    return;
+                    if(student == null) {
+                        JOptionPane.showMessageDialog(this, "Username is not correct!");
+                        return;
+                    }
+
+                    JOptionPane.showMessageDialog(this, "Welcome " + student.getFirstName());
+                    this.dispose();
+                    new StudentHome(student);
                 }
-
-                JOptionPane.showMessageDialog(this, "Welcome " + student.getFirstName());
-                this.dispose();
-                new StudentHome(student);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             }
         });
 
